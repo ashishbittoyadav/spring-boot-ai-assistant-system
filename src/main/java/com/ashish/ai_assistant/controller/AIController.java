@@ -19,12 +19,15 @@ public class AIController {
         this.queryRepository = queryRepository;
     }
 
-    @PostMapping("/ask")
+    @PostMapping("/chat")
     public String askAI(@RequestBody Map<String,String> request){
 
         String question = request.get("question");
-        return aiService.askAI(question);
+        String sessionId = request.get("sessionId");
+        return aiService.askAI(sessionId,question);
     }
+
+
 
     @GetMapping("/history")
     public List<QueryHistory> getHistory(){

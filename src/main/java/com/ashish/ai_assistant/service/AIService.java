@@ -7,6 +7,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -18,11 +19,22 @@ public class AIService {
         this.queryRepository = queryRepository;
     }
 
-    public String askAI(String question){
+    public String askAI(String sessionId,String question){
+        List<QueryHistory> history = queryRepository.findBySessionIdOrderByCreatedAtAsc(sessionId);
+
+        StringBuilder context = new StringBuilder();
+
+        for (QueryHistory h: history){
+            context.append("User:").append(h.getQuestion()).append("\n");
+            context.append("AI:").append(h.getResponse()).append("\n");
+        }
+
+        context.append("User:").append(question).append("\n");
+
         String url = "http://localhost:11434/api/generate";
         Map<String,Object> request = new HashMap<>();
         request.put("model","llama3");
-        request.put("prompt",question);
+        request.put("prompt",context.toString());
         request.put("stream",false);
 
         Map apiResponse = restTemplate.postForObject(url,request,Map.class);
