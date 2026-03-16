@@ -31,7 +31,8 @@ public class AIService {
 
         context.append("User:").append(question).append("\n");
 
-        String url = "http://localhost:11434/api/generate";
+//        String url = "http://localhost:11434/api/generate";
+        String url = "http://ollama:11434/api/generate";
         Map<String,Object> request = new HashMap<>();
         request.put("model","llama3");
         request.put("prompt",context.toString());
