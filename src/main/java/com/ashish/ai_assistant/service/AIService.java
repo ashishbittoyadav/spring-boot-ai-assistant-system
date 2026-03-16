@@ -44,6 +44,7 @@ public class AIService {
         QueryHistory queryHistory = new QueryHistory();
         queryHistory.setQuestion(question);
         queryHistory.setResponse(response);
+        queryHistory.setSessionId(sessionId);
         queryHistory.setCreatedAt(LocalDateTime.now());
 
         queryRepository.save(queryHistory);
