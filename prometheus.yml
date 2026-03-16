@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'springboot-app'
+    metrics_path: '/actuator/prometheus'
+    static_configs:
+      - targets: [ 'springboot:8080' ]
+
+        ##springboot:8080 is the name of the spring boot in docker file

@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   postgres:
     image: postgres:15
@@ -16,6 +14,22 @@ services:
     container_name: ai-ollama
     ports:
       - "11434:11434"
+    volumes:
+      - /Users/ashishyadav/.ollama/models:/root/.ollama/models
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - springboot
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
 
   springboot:
     build: .
@@ -25,3 +39,7 @@ services:
     depends_on:
       - postgres
       - ollama
+
+# Declare the volume here
+volumes:
+  ollama-data:
