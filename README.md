@@ -14,3 +14,8 @@
 ``
 while true; do curl -s http://localhost:8080/actuator/health > /dev/null; sleep 0.1; done
 ``
+
+## added alert to share via email
+### created `alertmanager.yml` 
+#### email and used `appPassword` which is stored in the environment variable `APP_PASSWORD_FOR_AI_SPRING_BOOT`
+### update `docker-compose.yml`

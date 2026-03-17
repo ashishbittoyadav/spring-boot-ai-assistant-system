@@ -1,0 +1,12 @@
+route:
+  receiver: 'email-notifications'
+
+receivers:
+  - name: 'email-notifications'
+    email_configs:
+      - to: 'ashishbitto07@gmail.com'
+        from: 'ashishbitto07@gmail.com'
+        smarthost: 'smtp.gmail.com:587'
+        auth_username: 'ashishbitto07@gmail.com'
+        auth_password: ${APP_PASSWORD_FOR_AI_SPRING_BOOT}
+        require_tls: true
