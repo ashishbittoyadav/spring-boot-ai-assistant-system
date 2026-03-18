@@ -1,12 +1,11 @@
 route:
-  receiver: 'email-notifications'
+  receiver: 'all'
+  group_wait: 10s
+  group_interval: 30s
+  repeat_interval: 1m
 
 receivers:
-  - name: 'email-notifications'
-    email_configs:
-      - to: 'ashishbitto07@gmail.com'
-        from: 'ashishbitto07@gmail.com'
-        smarthost: 'smtp.gmail.com:587'
-        auth_username: 'ashishbitto07@gmail.com'
-        auth_password: ${APP_PASSWORD_FOR_AI_SPRING_BOOT}
-        require_tls: true
+  - name: 'all'
+    webhook_configs:
+      - url: 'http://springboot:8080/alerts'
+        send_resolved: true

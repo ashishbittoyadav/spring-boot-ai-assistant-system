@@ -19,6 +19,19 @@ public class AIService {
         this.queryRepository = queryRepository;
     }
 
+    public String analyzeAlert(String alertJson){
+        String prompt = "Analyze this alert and give root cause + solution:\n" + alertJson;
+
+        Map<String,Object> body = new HashMap<>();
+        body.put("model","llama3");
+        body.put("prompt",prompt);
+        body.put("stream",false);
+
+        String response = restTemplate.postForObject("http://ollama:11434/api/generate",body,String.class);
+
+        return response;
+    }
+
     public String askAI(String sessionId,String question){
         List<QueryHistory> history = queryRepository.findBySessionIdOrderByCreatedAtAsc(sessionId);
 

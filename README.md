@@ -19,3 +19,6 @@ while true; do curl -s http://localhost:8080/actuator/health > /dev/null; sleep 
 ### created `alertmanager.yml` 
 #### email and used `appPassword` which is stored in the environment variable `APP_PASSWORD_FOR_AI_SPRING_BOOT`
 ### update `docker-compose.yml`
+
+### alert webhook added 
+#### now the alerts right now i have implemented only HighRequestRate rule in the alert-rules.yml file is added/inserted in the alerts table and also analyse the root cause via AI.
