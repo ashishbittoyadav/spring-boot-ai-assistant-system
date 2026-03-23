@@ -20,7 +20,7 @@ public class AIController {
     }
 
     @PostMapping("/chat")
-    public String askAI(@RequestBody Map<String,String> request){
+    public Map<String, String> askAI(@RequestBody Map<String,String> request){
 
         String question = request.get("question");
         String sessionId = request.get("sessionId");

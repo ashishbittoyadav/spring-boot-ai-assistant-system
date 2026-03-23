@@ -32,7 +32,7 @@ public class AIService {
         return response;
     }
 
-    public String askAI(String sessionId,String question){
+    public Map<String, String> askAI(String sessionId,String question){
         List<QueryHistory> history = queryRepository.findBySessionIdOrderByCreatedAtAsc(sessionId);
 
         StringBuilder context = new StringBuilder();
@@ -63,6 +63,9 @@ public class AIService {
 
         queryRepository.save(queryHistory);
 
-        return response;
+        Map<String, String> result = new HashMap<>();
+        result.put("response", response);
+        return result;
+//        return response;
     }
 }
