@@ -2,21 +2,26 @@ package com.ashish.ai_assistant.service;
 
 import com.ashish.ai_assistant.model.QueryHistory;
 import com.ashish.ai_assistant.repository.QueryRepository;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+// import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
 @Service
 public class AIService {
-    private final RestTemplate restTemplate = new RestTemplate();
+    // private final RestTemplate restTemplate = new RestTemplate();
     private final QueryRepository queryRepository;
 
-    AIService(QueryRepository queryRepository){
+    private final RestTemplate restTemplate;
+
+    AIService(QueryRepository queryRepository,RestTemplate restTemplate){
         this.queryRepository = queryRepository;
+        this.restTemplate = restTemplate;
     }
 
     public String analyzeAlert(String alertJson){
@@ -68,4 +73,6 @@ public class AIService {
         return result;
 //        return response;
     }
+
+    
 }

@@ -3,10 +3,11 @@ package com.ashish.ai_assistant.controller;
 import com.ashish.ai_assistant.model.QueryHistory;
 import com.ashish.ai_assistant.repository.QueryRepository;
 import com.ashish.ai_assistant.service.AIService;
-import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/ai")
